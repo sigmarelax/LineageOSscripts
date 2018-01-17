@@ -77,5 +77,12 @@ git fetch https://github.com/LineageOMS/android_vendor_cm cm-14.1
 git cherry-pick 218eed7ae28e1185bf922af710f2b944b6241bc4
 git cherry-pick 56a5353e83eb13054a696653a3c978bdfb6c4c04
 cd ../..
+sleep 3
 
-echo "DONE!"
+echo "Pulled all changes. Proceeding to build..."
+sleep 5
+
+export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
+source build/envsetup.sh
+breakfast rio
+brunch rio
