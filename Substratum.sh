@@ -3,6 +3,11 @@
 # This script pulls all necessary changes to enable Substratum themes in a LineageOS 14.1 build
 # Uses one sigmarelax repo to avert conflicts, all cherry-picks work fine (as of Dec 11, 2017)
 
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
+
 if [[ ! -f .repo/local_manifests/substratum.xml ]]; then
     mkdir -p .repo/local_manifests
     curl --silent --output .repo/local_manifests/substratum.xml \
